@@ -26,6 +26,7 @@ This is a [homebridge](https://github.com/nfarina/homebridge) plugin which uses 
 ## ToDo
 - remove logging
 - configurable measurement area (e.g. whole image, top/left, ...)
+- add optional correction-factor for lux-value
 
 ## What else
 

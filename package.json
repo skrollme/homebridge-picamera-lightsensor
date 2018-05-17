@@ -1,0 +1,31 @@
+{
+	"name": "homebridge-picamera-lightsensor",
+	"version": "0.1.0",
+	"description": "Homebridge plugin which uses the raspberry-pi camera to emulate a ambientlight sensor",
+	"license": "ISC",
+	"main": "index.js",
+	"keywords": [
+		"homebridge-plugin",
+		"homebridge",
+		"raspberrypi",
+		"camera",
+		"lightsendor"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/skrollme/homebridge-picamera-lightsensor.git"
+	},
+	"engines": {
+		"node": ">=0.12.0",
+		"homebridge": ">=0.4.16"
+	},
+	"dependencies": {
+		"bmp-js": "0.1.0",
+		"node-raspistill": "0.0.14",
+		"polling-to-event": "^2.1.0"
+	},
+	"bugs": {
+		"url": "https://github.com/skrollme/homebridge-picamera-lightsensor/issues"
+	},
+	"homepage": "https://github.com/skrollme/homebridge-picamera-lightsensor#readme"
+}

@@ -18,6 +18,7 @@ This is a [homebridge](https://github.com/nfarina/homebridge) plugin which uses 
 ]
  ```
  ### Parameter
+ 
  - **poll_interval:** seconds between measurements (default: 300)
  - **from_left_percent:** left edge from where the calculation should start (default: 0)
  - **to_right_percent:** right edge where the calculation should end (default: 100)

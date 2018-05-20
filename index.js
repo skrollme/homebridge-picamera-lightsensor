@@ -4,9 +4,12 @@ const Raspistill = require('node-raspistill').Raspistill;
 var bmp = require("bmp-js");
 var pollingtoevent = require('polling-to-event');
 
+const CAPTURE_W = 64;
+const CAPTURE_H = 40;
+
 const camera = new Raspistill({
-    width: 64,
-    height: 40,
+    width: CAPTURE_W,
+    height: CAPTURE_H,
     encoding: 'bmp',
     noFileSave: true
 });
@@ -24,6 +27,11 @@ function PiCameraLightsensor(log, config) {
     this.lightlevel = 0.0;
     this.name = config["name"];
     this.poll_interval = parseInt(config["poll_interval"] || 5*60);
+
+    this.fromLeft = CAPTURE_W * (parseInt(config["from_left_percent"] || 0) / 100);
+    this.toRight = CAPTURE_W * (parseInt(config["to_right_percent"] || 100) / 100);
+    this.fromTop = CAPTURE_H * (parseInt(config["from_top_percent"] || 0) / 100);
+    this.toBottom = CAPTURE_H * (parseInt(config["to_bottom_percent"] || 100) / 100);
 
     var statusemitter = pollingtoevent(function(done) {
         that.getLightlevel(function(error, response) {
@@ -53,19 +61,31 @@ PiCameraLightsensor.prototype = {
             return;
         }
 
-        that.log("take photo");
         camera.takePhoto().then((photo) => {
             var bmpData = bmp.decode(photo);
 
-            var s = 0;
+            var s = 0; var sc = 0;
+
             var c = 0;
+            var x = 0;
+            var y = 0;
+
             for(var i = 0;i < bmpData.data.length; i+=4) {
-                s += bmpData.data[i+1];
-                c += 1;
+                x = parseInt(c % CAPTURE_W);
+                y = parseInt(c / CAPTURE_W);
+
+                if(this.fromLeft <= x && x <= this.toRight) {
+                    if(this.fromTop <= y && y <= this.toBottom) {
+                        s += bmpData.data[i+1];
+                        sc++;
+                    }
+                }
+
+                c++;
             }
 
 
-            that.lightlevel = (s/c)/255*2000;
+            that.lightlevel = (s/sc)/255*2000;
             that.log("new ligthlevel: "+that.lightlevel);
             callback(null, that.lightlevel);
         });

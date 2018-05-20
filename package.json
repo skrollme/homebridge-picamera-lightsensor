@@ -1,6 +1,6 @@
 {
 	"name": "homebridge-picamera-lightsensor",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Homebridge plugin which uses the raspberry-pi camera to emulate a ambientlight sensor",
 	"license": "ISC",
 	"main": "index.js",

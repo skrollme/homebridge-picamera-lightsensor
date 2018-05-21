@@ -50,14 +50,14 @@ This is a [homebridge](https://github.com/nfarina/homebridge) plugin which uses 
 ### 0.1.0
 - First working version
 
-## ToDo
+## ToDos
 - ~~remove logging~~
 - ~~configurable measurement area (e.g. whole image, top/left, ...)~~
 - add optional correction-factor for lux-value
 
 ## What else
 
-Like this? Please buy me a beer :beers: ...
+Like this and want to express your feelings? Please buy me a beer :beers: ...
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.me/skroll)
 
